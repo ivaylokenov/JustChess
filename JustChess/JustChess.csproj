@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BA98030-87D4-49D0-AF95-878A64E5978A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JustChess</RootNamespace>
+    <AssemblyName>JustChess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Board\Board.cs" />
+    <Compile Include="Board\Contracts\IBoard.cs" />
+    <Compile Include="ChessFacade.cs" />
+    <Compile Include="Common\ChessColor.cs" />
+    <Compile Include="Common\Console\ConsoleConstants.cs" />
+    <Compile Include="Common\Console\ConsoleHelpers.cs" />
+    <Compile Include="Common\GlobalConstants.cs" />
+    <Compile Include="Common\GlobalErrorMessages.cs" />
+    <Compile Include="Common\Move.cs" />
+    <Compile Include="Common\ObjectValidator.cs" />
+    <Compile Include="Common\Position.cs" />
+    <Compile Include="Engine\Contracts\IChessEngine.cs" />
+    <Compile Include="Engine\Contracts\IGameInitializationStrategy.cs" />
+    <Compile Include="Engine\Initializations\StandardStartGameInitializationStrategy.cs" />
+    <Compile Include="Engine\StandardTwoPlayerEngine.cs" />
+    <Compile Include="EntryPoint.cs" />
+    <Compile Include="Figures\Contracts\BaseFigure.cs" />
+    <Compile Include="Figures\Bishop.cs" />
+    <Compile Include="Figures\Contracts\IFigure.cs" />
+    <Compile Include="Figures\King.cs" />
+    <Compile Include="Figures\Knight.cs" />
+    <Compile Include="Figures\Pawn.cs" />
+    <Compile Include="Figures\Queen.cs" />
+    <Compile Include="Figures\Rook.cs" />
+    <Compile Include="InputProviders\ConsoleInputProvider.cs" />
+    <Compile Include="InputProviders\Contracts\IInputProvider.cs" />
+    <Compile Include="Movements\Contracts\IMovement.cs" />
+    <Compile Include="Movements\Contracts\IMovementStrategy.cs" />
+    <Compile Include="Movements\NormalBishopMovement.cs" />
+    <Compile Include="Movements\NormalPawnMovement.cs" />
+    <Compile Include="Movements\Strategies\NormalMovementStrategy.cs" />
+    <Compile Include="Players\Contracts\IPlayer.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\ConsoleRenderer.cs" />
+    <Compile Include="Renderers\Contracts\IRenderer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
