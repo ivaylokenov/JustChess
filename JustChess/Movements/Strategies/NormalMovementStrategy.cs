@@ -15,6 +15,10 @@
                 {
                     new NormalBishopMovement()
                 }},
+            {"Knight", new List<IMovement>
+                {
+                    new NormalKnightMovement()
+                }},
         };
 
         public IList<IMovement> GetMovements(string figure)
