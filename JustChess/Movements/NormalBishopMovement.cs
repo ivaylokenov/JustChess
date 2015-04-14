@@ -29,29 +29,36 @@
 
             int rowIndex = from.Row;
             char colIndex = from.Col;
-            // top-right
+
+            int rowDirection = from.Row < to.Row ? 1 : -1;
+            char colDirection = (char)(from.Col < to.Col ? 1 : -1);
+
             while(true)
             {
-                rowIndex++;
-                colIndex++;
+                rowIndex += rowDirection;
+                colIndex += colDirection;
+
                 if (to.Row == rowIndex && to.Col == colIndex)
                 {
                     var figureAtPositon = board.GetFigureAtPosition(to);
+
                     if (figureAtPositon != null && figureAtPositon.Color == figure.Color)
                     {
-                        throw new NotImplementedException("There is a figure on your way!");
+                        throw new InvalidOperationException(GlobalErrorMessages.FigureOnTheWayErrorMessage);
                     }
                     else
                     {
                         return;
                     }
+
                 }
 
                 var position = Position.FromChessCoordinates(rowIndex, colIndex);
                 var figureAtPosition = board.GetFigureAtPosition(position);
-                if (figure != null)
+
+                if (figureAtPosition != null)
                 {
-                    throw new NotImplementedException("There is a figure on your way!");
+                    throw new InvalidOperationException(GlobalErrorMessages.FigureOnTheWayErrorMessage);
                 }
             }
         }
