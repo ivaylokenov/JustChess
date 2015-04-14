@@ -73,6 +73,7 @@
     <Compile Include="Movements\NormalKingMovement.cs" />
     <Compile Include="Movements\NormalKnightMovement.cs" />
     <Compile Include="Movements\NormalPawnMovement.cs" />
+    <Compile Include="Movements\NormalRookMovement.cs" />
     <Compile Include="Movements\Strategies\NormalMovementStrategy.cs" />
     <Compile Include="Players\Contracts\IPlayer.cs" />
     <Compile Include="Players\Player.cs" />
