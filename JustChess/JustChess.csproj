@@ -70,6 +70,7 @@
     <Compile Include="Movements\Contracts\IMovement.cs" />
     <Compile Include="Movements\Contracts\IMovementStrategy.cs" />
     <Compile Include="Movements\NormalBishopMovement.cs" />
+    <Compile Include="Movements\NormalKingMovement.cs" />
     <Compile Include="Movements\NormalKnightMovement.cs" />
     <Compile Include="Movements\NormalPawnMovement.cs" />
     <Compile Include="Movements\Strategies\NormalMovementStrategy.cs" />
