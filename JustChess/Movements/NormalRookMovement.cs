@@ -7,33 +7,31 @@
     using JustChess.Figures.Contracts;
     using JustChess.Movements.Contracts;
 
-    public class NormalBishopMovement : IMovement
+    public class NormalRookMovement : IMovement
     {
-        private const string BishopInvalidMove = "Bishops cannot move this way!";
+        private const string RookInvalidMove = "Rooks cannot move this way!";
 
         public void ValidateMove(IFigure figure, IBoard board, Move move)
         {
             var rowDistance = Math.Abs(move.From.Row - move.To.Row);
             var colDistance = Math.Abs(move.From.Col - move.To.Col);
-
-            // TODO: extract to method
-            var other = figure.Color == ChessColor.White ? ChessColor.Black : ChessColor.White;
-
-            if (rowDistance != colDistance)
-            {
-                throw new InvalidOperationException(BishopInvalidMove);
-            }
-
             var from = move.From;
             var to = move.To;
 
+            if (rowDistance > 0 && colDistance > 0)
+            {
+                throw new InvalidOperationException(RookInvalidMove);
+            }
+
             int rowIndex = from.Row;
             char colIndex = from.Col;
-
             int rowDirection = from.Row < to.Row ? 1 : -1;
             char colDirection = (char)(from.Col < to.Col ? 1 : -1);
 
-            while(true)
+            rowDirection = rowDistance > 0 ? rowDirection : 0;
+            colDirection = (char)(colDistance > 0 ? colDirection : 0);
+
+            while (true)
             {
                 rowIndex += rowDirection;
                 colIndex += colDirection;
@@ -50,7 +48,6 @@
                     {
                         return;
                     }
-
                 }
 
                 var position = Position.FromChessCoordinates(rowIndex, colIndex);
@@ -60,6 +57,7 @@
                 {
                     throw new InvalidOperationException(GlobalErrorMessages.FigureOnTheWayErrorMessage);
                 }
+
             }
         }
     }
