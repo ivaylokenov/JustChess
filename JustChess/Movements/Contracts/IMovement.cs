@@ -1,8 +1,8 @@
 ﻿namespace JustChess.Movements.Contracts
 {
-    using JustChess.Board.Contracts;
-    using JustChess.Common;
-    using JustChess.Figures.Contracts;
+    using Board.Contracts;
+    using Common;
+    using Figures.Contracts;
 
     public interface IMovement
     {

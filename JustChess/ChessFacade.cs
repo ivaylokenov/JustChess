@@ -2,26 +2,23 @@
 {
     using System;
 
-    using JustChess.Engine;
-    using JustChess.Engine.Contracts;
-    using JustChess.InputProviders;
-    using JustChess.InputProviders.Contracts;
-    using JustChess.Renderers;
-    using JustChess.Renderers.Contracts;
-    using JustChess.Engine.Initializations;
+    using Engine;
+    using InputProviders;
+    using Renderers;
+    using Engine.Initializations;
 
     public static class ChessFacade
     {
         public static void Start()
         {
-            IRenderer renderer = new ConsoleRenderer();
+            var renderer = new ConsoleRenderer();
             // renderer.RenderMainMenu();
 
-            IInputProvider inputProvider = new ConsoleInputProvider();
+            var inputProvider = new ConsoleInputProvider();
 
-            IChessEngine chessEngine = new StandardTwoPlayerEngine(renderer, inputProvider);
+            var chessEngine = new StandardTwoPlayerEngine(renderer, inputProvider);
 
-            IGameInitializationStrategy gameInitializationStrategy = new StandardStartGameInitializationStrategy();
+            var gameInitializationStrategy = new StandardStartGameInitializationStrategy();
 
             chessEngine.Initialize(gameInitializationStrategy);
             chessEngine.Start();

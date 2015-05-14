@@ -64,10 +64,7 @@
                     this.CheckIfToPositionIsEmpty(figure, to);
 
                     var availableMovements = figure.Move(this.movementStrategy);
-                    foreach (var movement in availableMovements)
-                    {
-                        movement.ValidateMove(figure, board, move);
-                    }
+                    this.ValidateMovements(figure, availableMovements, move);
 
                     board.MoveFigureAtPosition(figure, from, to);
                     this.renderer.RenderBoard(board);
@@ -85,6 +82,30 @@
                     this.currentPlayerIndex--;
                     this.renderer.PrintErrorMessage(ex.Message);
                 }
+            }
+        }
+
+        private void ValidateMovements(IFigure figure, IEnumerable<IMovement> availableMovements, Move move)
+        {
+            var validMoveFound = false;
+            var foundException = new Exception();
+            foreach (var movement in availableMovements)
+            {
+                try
+                {
+                    movement.ValidateMove(figure, board, move);
+                    validMoveFound = true;
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    foundException = ex;
+                }
+            }
+
+            if (!validMoveFound)
+            {
+                throw foundException;
             }
         }
 
