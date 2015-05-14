@@ -39,14 +39,14 @@
                         return;
                     }
                 }
-                if (from.Row == 2 && !this.CheckDiagonalMove(from, to))
+                if (from.Row == 2 && from.Col == to.Col)
                 {
                     if (from.Row + 2 == to.Row && figureAtPosition == null)
                     {
                         return;
                     }
                 }
-                if (from.Row + 1 == to.Row && !this.CheckDiagonalMove(from, to))
+                if (from.Row + 1 == to.Row && from.Col == to.Col)
                 {
                     if (figureAtPosition == null)
                     {
@@ -63,14 +63,14 @@
                         return;
                     }
                 }
-                if (from.Row == 7 && !this.CheckDiagonalMove(from, to))
+                if (from.Row == 7 && from.Col == to.Col)
                 {
                     if (from.Row - 2 == to.Row && figureAtPosition == null)
                     {
                         return;
                     }
                 }
-                if (from.Row - 1 == to.Row && !this.CheckDiagonalMove(from, to))
+                if (from.Row - 1 == to.Row && from.Col == to.Col)
                 {
                     if (figureAtPosition == null)
                     {
