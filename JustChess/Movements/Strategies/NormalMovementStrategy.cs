@@ -5,7 +5,7 @@
 
     public class NormalMovementStrategy : IMovementStrategy
     {
-        private IDictionary<string, IList<IMovement>> movements = new Dictionary<string, IList<IMovement>>
+        private readonly IDictionary<string, IList<IMovement>> movements = new Dictionary<string, IList<IMovement>>
         {
             {"Pawn", new List<IMovement>
                 {
@@ -27,7 +27,11 @@
                 {
                     new NormalRookMovement()
                 }},
-
+            {"Queen", new List<IMovement>
+                {
+                    new NormalBishopMovement(),
+                    new NormalRookMovement()
+                }},
         };
 
         public IList<IMovement> GetMovements(string figure)

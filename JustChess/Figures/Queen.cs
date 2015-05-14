@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
 
-    using JustChess.Common;
-    using JustChess.Figures.Contracts;
-    using JustChess.Movements.Contracts;
+    using Common;
+    using Contracts;
+    using Movements.Contracts;
 
     public class Queen : BaseFigure, IFigure
     {
@@ -15,7 +15,7 @@
 
         public override ICollection<IMovement> Move(IMovementStrategy strategy)
         {
-            throw new System.NotImplementedException();
+            return strategy.GetMovements(this.GetType().Name);
         }
     }
 }

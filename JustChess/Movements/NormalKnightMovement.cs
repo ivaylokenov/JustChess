@@ -9,7 +9,7 @@
 
     public class NormalKnightMovement : IMovement
     {
-        private const string KnightInvalidMove = "Knights cannot move this way!";
+        private const string KnightInvalidMove = "{0}s cannot move this way!";
 
         public void ValidateMove(IFigure figure, IBoard board, Move move)
         {

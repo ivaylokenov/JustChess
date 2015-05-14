@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
 
-    using JustChess.Common;
-    using JustChess.Figures.Contracts;
-    using JustChess.Movements.Contracts;
+    using Common;
+    using Contracts;
+    using Movements.Contracts;
 
     public class Rook : BaseFigure, IFigure
     {

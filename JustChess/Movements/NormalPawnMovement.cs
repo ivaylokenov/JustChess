@@ -9,8 +9,8 @@
 
     public class NormalPawnMovement : IMovement
     {
-        private const string PawnBackwardsErrorMessage = "Pawns cannot move backwards!";
-        private const string PawnInvalidMove = "Pawns cannot move this way!";
+        private const string PawnBackwardsErrorMessage = "{0}s cannot move backwards!";
+        private const string PawnInvalidMove = "{0}s cannot move this way!";
 
         public void ValidateMove(IFigure figure, IBoard board, Move move)
         {

@@ -53,13 +53,14 @@
         {
             while(true)
             {
+                IFigure figure = null;
                 try
                 {
                     var player = this.GetNextPlayer();
                     var move = this.input.GetNextPlayerMove(player);
                     var from = move.From;
                     var to = move.To;
-                    var figure = this.board.GetFigureAtPosition(from);
+                    figure = this.board.GetFigureAtPosition(from);
                     this.CheckIfPlayerOwnsFigure(player, figure, from);
                     this.CheckIfToPositionIsEmpty(figure, to);
 
@@ -80,7 +81,7 @@
                 catch (Exception ex)
                 {
                     this.currentPlayerIndex--;
-                    this.renderer.PrintErrorMessage(ex.Message);
+                    this.renderer.PrintErrorMessage(string.Format(ex.Message, figure.GetType().Name));
                 }
             }
         }

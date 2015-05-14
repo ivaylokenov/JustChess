@@ -2,14 +2,14 @@
 {
     using System;
 
-    using JustChess.Board.Contracts;
-    using JustChess.Common;
-    using JustChess.Figures.Contracts;
-    using JustChess.Movements.Contracts;
+    using Board.Contracts;
+    using Common;
+    using Figures.Contracts;
+    using Contracts;
 
     public class NormalRookMovement : IMovement
     {
-        private const string RookInvalidMove = "Rooks cannot move this way!";
+        private const string RookInvalidMove = "{0}s can move horizontally or vertically!";
 
         public void ValidateMove(IFigure figure, IBoard board, Move move)
         {
