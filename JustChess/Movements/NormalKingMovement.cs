@@ -4,8 +4,8 @@
 
     using Board.Contracts;
     using Common;
-    using Figures.Contracts;
     using Contracts;
+    using Figures.Contracts;
 
     public class NormalKingMovement : IMovement
     {

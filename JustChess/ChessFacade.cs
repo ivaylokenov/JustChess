@@ -3,16 +3,16 @@
     using System;
 
     using Engine;
+    using Engine.Initializations;
     using InputProviders;
     using Renderers;
-    using Engine.Initializations;
 
     public static class ChessFacade
     {
         public static void Start()
         {
             var renderer = new ConsoleRenderer();
-            // renderer.RenderMainMenu();
+            //// renderer.RenderMainMenu();
 
             var inputProvider = new ConsoleInputProvider();
 

@@ -3,14 +3,13 @@
     using System;
     using System.Collections.Generic;
 
-    using JustChess.Figures.Contracts;
-    using JustChess.Figures;
+    using Figures.Contracts;
 
     public static class ConsoleHelpers
     {
-        private static IDictionary<string, bool[,]> patterns = new Dictionary<string, bool[,]>
+        private static readonly IDictionary<string, bool[,]> Patterns = new Dictionary<string, bool[,]>
         {
-            {"Pawn", new bool[,]
+            { "Pawn", new[,]
                 {
                     { false, false, false, false, false, false, false, false, false, },
                     { false, false, false, false, false, false, false, false, false, },
@@ -21,8 +20,9 @@
                     { false, false, false, true, true, true, false, false, false, },
                     { false, false, true, true, true, true, true, false, false, },
                     { false, false, false, false, false, false, false, false, false, }
-                }},
-            {"Rook", new bool[,]
+                } 
+            },
+            { "Rook", new[,]
                 {
                     { false, false, false, false, false, false, false, false, false, },
                     { false, false, true, false, true, false, true, false, false, },
@@ -33,8 +33,9 @@
                     { false, false, true, true, true, true, true, false, false, },
                     { false, false, true, true, true, true, true, false, false, },
                     { false, false, false, false, false, false, false, false, false, }
-                }},
-            {"Knight", new bool[,]
+                }
+            },
+            { "Knight", new[,]
                 {
                     { false, false, false, false, false, false, false, false, false, },
                     { false, false, false, false, true, true, false, false, false, },
@@ -45,8 +46,9 @@
                     { false, false, false, true, true, true, false, false, false, },
                     { false, false, true, true, true, true, true, false, false, },
                     { false, false, false, false, false, false, false, false, false, }
-                }},
-            {"Bishop", new bool[,]
+                } 
+            },
+            { "Bishop", new[,]
                 {
                     { false, false, false, false, false, false, false, false, false, },
                     { false, false, false, false, true, false, false, false, false, },
@@ -57,8 +59,9 @@
                     { false, false, false, false, true, false, false, false, false, },
                     { false, true, true, true, false, true, true, true, false, },
                     { false, false, false, false, false, false, false, false, false, }
-                }},
-            {"King", new bool[,]
+                }
+            },
+            { "King", new[,]
                 {
                     { false, false, false, false, false, false, false, false, false, },
                     { false, false, false, false, true, false, false, false, false, },
@@ -69,8 +72,9 @@
                     { false, false, true, true, true, true, true, false, false, },
                     { false, false, true, true, true, true, true, false, false, },
                     { false, false, false, false, false, false, false, false, false, }
-                }},
-            {"Queen", new bool[,]
+                } 
+            },
+            { "Queen", new[,]
                 {
                     { false, false, false, false, false, false, false, false, false, },
                     { false, false, false, false, true, false, false, false, false, },
@@ -81,7 +85,8 @@
                     { false, false, true, true, false, true, true, false, false, },
                     { false, false, true, true, true, true, true, false, false, },
                     { false, false, false, false, false, false, false, false, false, }
-                }},
+                } 
+            },
         };
 
         public static ConsoleColor ToConsoleColor(this ChessColor chessColor)
@@ -102,7 +107,7 @@
         public static void SetCursorAtCenter(int lengthOfMessage)
         {
             int centerRow = Console.WindowHeight / 2;
-            int centerCol = Console.WindowWidth / 2 - lengthOfMessage / 2;
+            int centerCol = (Console.WindowWidth / 2) - (lengthOfMessage / 2);
             Console.SetCursorPosition(centerCol, centerRow);
         }
 
@@ -114,12 +119,12 @@
                 return;
             }
 
-            if (!patterns.ContainsKey(figure.GetType().Name))
+            if (!Patterns.ContainsKey(figure.GetType().Name))
             {
                 return;
             }
 
-            var figurePattern = patterns[figure.GetType().Name];
+            var figurePattern = Patterns[figure.GetType().Name];
 
             for (int i = 0; i < figurePattern.GetLength(0); i++)
             {

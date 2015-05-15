@@ -39,6 +39,7 @@
                         return;
                     }
                 }
+
                 if (from.Row == 2 && from.Col == to.Col)
                 {
                     if (from.Row + 2 == to.Row && figureAtPosition == null)
@@ -46,6 +47,7 @@
                         return;
                     }
                 }
+
                 if (from.Row + 1 == to.Row && from.Col == to.Col)
                 {
                     if (figureAtPosition == null)
@@ -63,6 +65,7 @@
                         return;
                     }
                 }
+
                 if (from.Row == 7 && from.Col == to.Col)
                 {
                     if (from.Row - 2 == to.Row && figureAtPosition == null)
@@ -70,6 +73,7 @@
                         return;
                     }
                 }
+
                 if (from.Row - 1 == to.Row && from.Col == to.Col)
                 {
                     if (figureAtPosition == null)
@@ -95,7 +99,7 @@
 
         private bool CheckDiagonalMove(Position from, Position to)
         {
-            return (from.Col + 1 == to.Col || from.Col - 1 == to.Col);
+            return from.Col + 1 == to.Col || from.Col - 1 == to.Col;
         }
     }
 }

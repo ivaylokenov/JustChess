@@ -3,18 +3,18 @@
     using System;
     using System.Collections.Generic;
 
-    using JustChess.Board.Contracts;
-    using JustChess.Engine.Contracts;
-    using JustChess.Players.Contracts;
-    using JustChess.Figures;
-    using JustChess.Common;
-    using JustChess.Figures.Contracts;
+    using Board.Contracts;
+    using Common;
+    using Contracts;
+    using Figures;
+    using Figures.Contracts;
+    using Players.Contracts;
 
     public class StandardStartGameInitializationStrategy : IGameInitializationStrategy
     {
         private const int BoardTotalRowsAndCols = 8;
 
-        private IList<Type> figureTypes;
+        private readonly IList<Type> figureTypes;
 
         public StandardStartGameInitializationStrategy()
         {

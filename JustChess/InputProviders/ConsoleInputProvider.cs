@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
 
-    using JustChess.Common;
-    using JustChess.Common.Console;
-    using JustChess.Players;
-    using JustChess.Players.Contracts;
-    using JustChess.InputProviders.Contracts;
+    using Common;
+    using Common.Console;
+    using Contracts;
+    using Players;
+    using Players.Contracts;
 
     public class ConsoleInputProvider : IInputProvider
     {
@@ -35,7 +35,7 @@
         public Move GetNextPlayerMove(IPlayer player)
         {
             ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerIO);
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 10, ConsoleConstants.ConsoleRowForPlayerIO);
+            Console.SetCursorPosition((Console.WindowWidth / 2) - 10, ConsoleConstants.ConsoleRowForPlayerIO);
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Write("{0} is next: ", player.Name);
             var positionAsString = Console.ReadLine().Trim().ToLower();

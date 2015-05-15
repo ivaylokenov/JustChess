@@ -1,8 +1,9 @@
 ﻿namespace JustChess.Engine.Contracts
 {
     using System.Collections.Generic;
-    using JustChess.Players.Contracts;
-    using JustChess.Board.Contracts;
+
+    using Board.Contracts;
+    using Players.Contracts;
 
     public interface IGameInitializationStrategy
     {

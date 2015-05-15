@@ -4,8 +4,8 @@
 
     using Board.Contracts;
     using Common;
-    using Figures.Contracts;
     using Contracts;
+    using Figures.Contracts;
 
     public class NormalRookMovement : IMovement
     {
@@ -57,7 +57,6 @@
                 {
                     throw new InvalidOperationException(GlobalErrorMessages.FigureOnTheWayErrorMessage);
                 }
-
             }
         }
     }

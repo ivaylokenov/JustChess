@@ -1,8 +1,9 @@
 ﻿namespace JustChess.Figures.Contracts
 {
+    using System.Collections.Generic;
+
     using Common;
     using Movements.Contracts;
-    using System.Collections.Generic;
 
     public interface IFigure
     {

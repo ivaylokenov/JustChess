@@ -4,8 +4,8 @@
 
     using Board.Contracts;
     using Common;
-    using Figures.Contracts;
     using Contracts;
+    using Figures.Contracts;
 
     public class NormalBishopMovement : IMovement
     {
@@ -33,7 +33,7 @@
             int rowDirection = from.Row < to.Row ? 1 : -1;
             char colDirection = (char)(from.Col < to.Col ? 1 : -1);
 
-            while(true)
+            while (true)
             {
                 rowIndex += rowDirection;
                 colIndex += colDirection;
@@ -50,7 +50,6 @@
                     {
                         return;
                     }
-
                 }
 
                 var position = Position.FromChessCoordinates(rowIndex, colIndex);

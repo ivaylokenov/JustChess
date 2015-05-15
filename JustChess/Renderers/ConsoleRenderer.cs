@@ -1,11 +1,12 @@
 ﻿namespace JustChess.Renderers
 {
-    using JustChess.Board.Contracts;
-    using JustChess.Common;
-    using JustChess.Common.Console;
-    using JustChess.Renderers.Contracts;
     using System;
     using System.Threading;
+
+    using Board.Contracts;
+    using Common;
+    using Common.Console;
+    using Contracts;
 
     public class ConsoleRenderer : IRenderer
     {
@@ -38,8 +39,8 @@
         public void RenderBoard(IBoard board)
         {
             // TODO: validate Console dimensions
-            var startRowPrint = Console.WindowWidth / 2 - (board.TotalRows / 2) * ConsoleConstants.CharactersPerRowPerBoardSquare;
-            var startColPrint = Console.WindowHeight / 2 - (board.TotalCols / 2) * ConsoleConstants.CharactersPerColPerBoardSquare;
+            var startRowPrint = (Console.WindowWidth / 2) - (board.TotalRows / 2 * ConsoleConstants.CharactersPerRowPerBoardSquare);
+            var startColPrint = (Console.WindowHeight / 2) - (board.TotalCols / 2 * ConsoleConstants.CharactersPerColPerBoardSquare);
 
             var currentRowPrint = startRowPrint;
             var currentColPrint = startColPrint;
@@ -52,8 +53,8 @@
             {
                 for (int left = 0; left < board.TotalCols; left++)
                 {
-                    currentColPrint = startRowPrint + left * ConsoleConstants.CharactersPerColPerBoardSquare;
-                    currentRowPrint = startColPrint + top * ConsoleConstants.CharactersPerRowPerBoardSquare;
+                    currentColPrint = startRowPrint + (left * ConsoleConstants.CharactersPerColPerBoardSquare);
+                    currentRowPrint = startColPrint + (top * ConsoleConstants.CharactersPerRowPerBoardSquare);
 
                     ConsoleColor backgroundColor;
                     if (counter % 2 == 0)
@@ -79,64 +80,64 @@
             }
         }
 
+        public void PrintErrorMessage(string errorMessage)
+        {
+            ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerIO);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition((Console.WindowWidth / 2) - (errorMessage.Length / 2), ConsoleConstants.ConsoleRowForPlayerIO);
+            Console.Write(errorMessage);
+            Thread.Sleep(2000);
+            ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerIO);
+        }
+
         private void PrintBorder(int startRowPrint, int startColPrint, int boardTotalRows, int boardTotalCols)
         {
-            var start = startRowPrint + ConsoleConstants.CharactersPerRowPerBoardSquare / 2;
+            var start = startRowPrint + (ConsoleConstants.CharactersPerRowPerBoardSquare / 2);
             for (int i = 0; i < boardTotalCols; i++)
             {
-                Console.SetCursorPosition(start + i * ConsoleConstants.CharactersPerRowPerBoardSquare, startColPrint - 1);
+                Console.SetCursorPosition(start + (i * ConsoleConstants.CharactersPerRowPerBoardSquare), startColPrint - 1);
                 Console.Write((char)('A' + i));
-                Console.SetCursorPosition(start + i * ConsoleConstants.CharactersPerRowPerBoardSquare, startColPrint + boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare);
+                Console.SetCursorPosition(start + (i * ConsoleConstants.CharactersPerRowPerBoardSquare), startColPrint + (boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare));
                 Console.Write((char)('A' + i));
             }
 
-            start = startColPrint + ConsoleConstants.CharactersPerColPerBoardSquare / 2;
+            start = startColPrint + (ConsoleConstants.CharactersPerColPerBoardSquare / 2);
             for (int i = 0; i < boardTotalRows; i++)
             {
-                Console.SetCursorPosition(startRowPrint - 1, start + i * ConsoleConstants.CharactersPerColPerBoardSquare);
+                Console.SetCursorPosition(startRowPrint - 1, start + (i * ConsoleConstants.CharactersPerColPerBoardSquare));
                 Console.Write(boardTotalRows - i);
-                Console.SetCursorPosition(startRowPrint + boardTotalCols * ConsoleConstants.CharactersPerColPerBoardSquare, start + i * ConsoleConstants.CharactersPerColPerBoardSquare);
+                Console.SetCursorPosition(startRowPrint + (boardTotalCols * ConsoleConstants.CharactersPerColPerBoardSquare), start + (i * ConsoleConstants.CharactersPerColPerBoardSquare));
                 Console.Write(boardTotalRows - i);
             }
 
             // TODO: check this math!
-            for (int i = startRowPrint - 2; i < startRowPrint + boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare + 2; i++)
+            for (int i = startRowPrint - 2; i < startRowPrint + (boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare) + 2; i++)
             {
                 Console.BackgroundColor = DarkSquareConsoleColor;
                 Console.SetCursorPosition(i, startColPrint - 2);
                 Console.Write(" ");
             }
 
-            for (int i = startRowPrint - 2; i < startRowPrint + boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare + 2; i++)
+            for (int i = startRowPrint - 2; i < startRowPrint + (boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare) + 2; i++)
             {
                 Console.BackgroundColor = DarkSquareConsoleColor;
-                Console.SetCursorPosition(i, startColPrint + boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare + 1);
+                Console.SetCursorPosition(i, startColPrint + (boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare) + 1);
                 Console.Write(" ");
             }
 
-            for (int i = startColPrint - 2; i < startColPrint + boardTotalCols * ConsoleConstants.CharactersPerColPerBoardSquare + 2; i++)
+            for (int i = startColPrint - 2; i < startColPrint + (boardTotalCols * ConsoleConstants.CharactersPerColPerBoardSquare) + 2; i++)
             {
                 Console.BackgroundColor = DarkSquareConsoleColor;
-                Console.SetCursorPosition(startRowPrint + boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare + 1, i);
+                Console.SetCursorPosition(startRowPrint + (boardTotalRows * ConsoleConstants.CharactersPerRowPerBoardSquare) + 1, i);
                 Console.Write(" ");
             }
 
-            for (int i = startColPrint - 2; i < startColPrint + boardTotalCols * ConsoleConstants.CharactersPerColPerBoardSquare + 2; i++)
+            for (int i = startColPrint - 2; i < startColPrint + (boardTotalCols * ConsoleConstants.CharactersPerColPerBoardSquare) + 2; i++)
             {
                 Console.BackgroundColor = DarkSquareConsoleColor;
                 Console.SetCursorPosition(startRowPrint - 2, i);
                 Console.Write(" ");
             }
-        }
-
-        public void PrintErrorMessage(string errorMessage)
-        {
-            ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerIO);
-            Console.Write(new string(' ', Console.WindowWidth)); 
-            Console.SetCursorPosition(Console.WindowWidth / 2 - errorMessage.Length / 2, ConsoleConstants.ConsoleRowForPlayerIO);
-            Console.Write(errorMessage);
-            Thread.Sleep(2000);
-            ConsoleHelpers.ClearRow(ConsoleConstants.ConsoleRowForPlayerIO);
         }
     }
 }

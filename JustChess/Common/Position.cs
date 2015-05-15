@@ -1,8 +1,20 @@
-﻿using System;
-namespace JustChess.Common
+﻿namespace JustChess.Common
 {
+    using System;
+
     public struct Position
     {
+        public Position(int row, char col)
+            : this()
+        {
+            this.Row = row;
+            this.Col = col;
+        }
+
+        public int Row { get; private set; }
+
+        public char Col { get; private set; }
+
         public static Position FromArrayCoordinates(int arrRow, int arrCol, int totalRows)
         {
             return new Position(totalRows - arrRow, (char)(arrCol + 'a'));
@@ -29,16 +41,5 @@ namespace JustChess.Common
                 throw new IndexOutOfRangeException("Selected column position on the board is not valid!");
             }
         }
-
-        public Position(int row, char col)
-            : this()
-        {
-            this.Row = row;
-            this.Col = col;
-        }
-
-        public int Row { get; private set; }
-
-        public char Col { get; private set; }
     }
 }

@@ -1,28 +1,28 @@
 ﻿namespace JustChess.Engine
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using JustChess.Board;
-    using JustChess.Engine.Contracts;
-    using JustChess.Players.Contracts;
-    using JustChess.Renderers.Contracts;
-    using JustChess.InputProviders.Contracts;
-    using JustChess.Common;
-    using JustChess.Board.Contracts;
-    using JustChess.Players;
     using System;
-    using JustChess.Figures.Contracts;
-    using JustChess.Movements.Contracts;
-    using JustChess.Movements.Strategies;
+    using System.Collections.Generic;
+
+    using Board;
+    using Board.Contracts;
+    using Common;
+    using Contracts;
+    using Figures.Contracts;
+    using InputProviders.Contracts;
+    using Movements.Contracts;
+    using Movements.Strategies;
+    using Players;
+    using Players.Contracts;
+    using Renderers.Contracts;
 
     public class StandardTwoPlayerEngine : IChessEngine
     {
-        private IList<IPlayer> players;
         private readonly IRenderer renderer;
         private readonly IInputProvider input;
         private readonly IBoard board;
         private readonly IMovementStrategy movementStrategy;
+
+        private IList<IPlayer> players;
 
         private int currentPlayerIndex;
 
@@ -32,6 +32,14 @@
             this.input = inputProvider;
             this.movementStrategy = new NormalMovementStrategy();
             this.board = new Board();
+        }
+
+        public IEnumerable<IPlayer> Players
+        {
+            get
+            {
+                return new List<IPlayer>(this.players);
+            }
         }
 
         public void Initialize(IGameInitializationStrategy gameInitializationStrategy)
@@ -46,12 +54,12 @@
 
             this.SetFirstPlayerIndex();
             gameInitializationStrategy.Initialize(this.players, this.board);
-            this.renderer.RenderBoard(board);
+            this.renderer.RenderBoard(this.board);
         }
 
         public void Start()
         {
-            while(true)
+            while (true)
             {
                 IFigure figure = null;
                 try
@@ -67,13 +75,12 @@
                     var availableMovements = figure.Move(this.movementStrategy);
                     this.ValidateMovements(figure, availableMovements, move);
 
-                    board.MoveFigureAtPosition(figure, from, to);
-                    this.renderer.RenderBoard(board);
+                    this.board.MoveFigureAtPosition(figure, from, to);
+                    this.renderer.RenderBoard(this.board);
 
                     // TODO: On every move check if we are in check
                     // TODO: Check pawn on last row
                     // TODO: If not castle - move figure (check castle - check if castle is valid, check pawn for An-pasan)
-                    // TODO: Check check
                     // TODO: If in check - check checkmate
                     // TODO: If not in check - check draw
                     // TODO: Continue
@@ -86,6 +93,11 @@
             }
         }
 
+        public void WinningConditions()
+        {
+            throw new NotImplementedException();
+        }
+
         private void ValidateMovements(IFigure figure, IEnumerable<IMovement> availableMovements, Move move)
         {
             var validMoveFound = false;
@@ -94,7 +106,7 @@
             {
                 try
                 {
-                    movement.ValidateMove(figure, board, move);
+                    movement.ValidateMove(figure, this.board, move);
                     validMoveFound = true;
                     break;
                 }
@@ -107,19 +119,6 @@
             if (!validMoveFound)
             {
                 throw foundException;
-            }
-        }
-
-        public void WinningConditions()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<IPlayer> Players
-        {
-            get
-            {
-                return new List<IPlayer>(this.players);
             }
         }
 

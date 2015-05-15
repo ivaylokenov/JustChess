@@ -3,7 +3,7 @@
     public struct Move
     {
         public Move(Position from, Position to)
-            :this()
+            : this()
         {
             this.From = from;
             this.To = to;

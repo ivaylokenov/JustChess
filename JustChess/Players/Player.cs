@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
 
-    using JustChess.Figures.Contracts;
-    using JustChess.Common;
-    using JustChess.Players.Contracts;
+    using Common;
+    using Contracts;
+    using Figures.Contracts;
 
     public class Player : IPlayer
     {
@@ -26,6 +26,7 @@
         public void AddFigure(IFigure figure)
         {
             ObjectValidator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
+
             // TODO: check figure and player color
             this.CheckIfFigureExists(figure);
             this.figures.Add(figure);
@@ -34,6 +35,7 @@
         public void RemoveFigure(IFigure figure)
         {
             ObjectValidator.CheckIfObjectIsNull(figure, GlobalErrorMessages.NullFigureErrorMessage);
+
             // TODO: check figure and player color
             this.CheckIfFigureDoesNotExist(figure);
             this.figures.Remove(figure);
